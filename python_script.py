@@ -42,7 +42,7 @@ def create_jar():
 
 
 def run_java(args):
-    print("🚀 Running MyInfArith with args:", args)
+    print("Running MyInfArith with args:", args)
     run_cmd = ["java", "-cp", ".", MAIN_CLASS] + args
     result = subprocess.run(run_cmd)
 
