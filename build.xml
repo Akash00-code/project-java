@@ -1,0 +1,43 @@
+<project name="ProjectJava" default="compile" basedir=".">
+    <property name="build.dir" value="bin"/>
+    <property name="jar.dir" value="dist"/>
+    <property name="jar.name" value="aarithmetic.jar"/>
+    
+    <!-- Define the correct directory structure -->
+    <property name="src.dir" value="."/>  <!-- Current directory as source -->
+
+    <!-- Initialize build directories -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${jar.dir}"/>
+    </target>
+
+    <!-- Compile the Java files -->
+    <target name="compile" depends="init">
+        <!-- Compile the Java files in the current directory and the arbitraryarithmetic folder -->
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"/>
+    </target>
+
+    <!-- Create a JAR file -->
+    <target name="jar" depends="compile">
+        <jar destfile="${jar.dir}/${jar.name}" basedir="${build.dir}">
+            <manifest>
+                <!-- Main class in the default package -->
+                <attribute name="Main-Class" value="MyInfArith"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <!-- Run the Java program -->
+    <target name="run" depends="compile">
+        <java classname="MyInfArith" fork="true" classpath="${build.dir}">
+            <arg line="${args}"/>
+        </java>
+    </target>
+
+    <!-- Clean up build directories -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${jar.dir}"/>
+    </target>
+</project>
