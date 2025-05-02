@@ -47,7 +47,7 @@ def run_java(args):
     result = subprocess.run(run_cmd)
 
     if result.returncode != 0:
-        print("❌ Execution failed.")
+        print(" Execution failed.")
         sys.exit(1)
 
 

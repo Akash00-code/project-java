@@ -64,16 +64,39 @@ public class Ainteger {
     }
 
     public String subtract(Ainteger obj) {
+        if (this.value.startsWith("-") && obj.value.startsWith("-")) {
+            // (-a) - (-b) = b - a
+            Ainteger aPos = new Ainteger(this.value.substring(1));
+            Ainteger bPos = new Ainteger(obj.value.substring(1));
+            return bPos.subtract(aPos);
+        }
+    
+        if (!this.value.startsWith("-") && obj.value.startsWith("-")) {
+            // a - (-b) = a + b
+            Ainteger bPos = new Ainteger(obj.value.substring(1));
+            return this.add(bPos);
+        }
+    
+        if (this.value.startsWith("-") && !obj.value.startsWith("-")) {
+            // (-a) - b = -(a + b)
+            Ainteger aPos = new Ainteger(this.value.substring(1));
+            String sum = aPos.add(obj);
+            return "-" + sum;
+        }
+
+
+
         int i = (this.value.length()) - 1;
         int j = (obj.value.length()) - 1;
         StringBuilder result = new StringBuilder();
         int dig1, dig2, greater = 0, diff, borrow = 0;
+        
         if ((i + 1) == (j + 1)) {
             for (int k = 0; k < (i + 1); k++) {
                 if ((this.value.charAt(k) - '0') > (obj.value.charAt(k) - '0')) {
                     greater = 1;
                     break;
-                } else if ((this.value.charAt(k)) - '0' < (obj.value.charAt(k) - '0')) {
+                } else if (((this.value.charAt(k)) - '0') < (obj.value.charAt(k) - '0')) {
                     greater = 2;
                     break;
                 }
