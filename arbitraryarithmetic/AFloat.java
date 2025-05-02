@@ -332,7 +332,7 @@ public class AFloat {
         if (((str1.length()) < (str2.length()) || (str1.charAt(0) == '0'))) {
             return "0";
         }
-        if (compare(str1, str2) < 0) return "0";
+        
    
         StringBuilder quotient = new StringBuilder();
         String s = "";
@@ -354,6 +354,7 @@ public class AFloat {
             }
             quotient.append(count);
         }
+
         String result = quotient.toString().replaceFirst("^0+(?!$)", "");
         result= result.isEmpty()?"0":result;
         StringBuilder R=new StringBuilder("");
