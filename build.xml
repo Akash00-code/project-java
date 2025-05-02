@@ -29,8 +29,8 @@
     </target>
 
     <!-- Run the Java program -->
-    <target name="run" depends="compile">
-        <java classname="MyInfArith" fork="true" classpath="${build.dir}">
+    <target name="run" depends="jar">
+        <java jar="${jar.dir}/${jar.name}" fork="true">
             <arg line="${args}"/>
         </java>
     </target>
